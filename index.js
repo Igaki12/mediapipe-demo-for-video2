@@ -155,8 +155,11 @@ videoSelector.addEventListener("change", async (event) => {
                     drawingUtils.drawLandmarks(result.result.landmarks[0], {
                         radius: (data) => DrawingUtils.lerp(data.from?.z ?? 0, -0.15, 0.1, 5, 1),
                         color : "black",
+                        fillColor : "gray"
                     });
-                    drawingUtils.drawConnectors(result.result.landmarks[0], PoseLandmarker.POSE_CONNECTIONS);
+                    drawingUtils.drawConnectors(result.result.landmarks[0], PoseLandmarker.POSE_CONNECTIONS, {
+                        color : "black"
+                    });
                     frameCanvasCtx.restore();
                     //     <table id="landmarkTable">
                     //       <tr>
