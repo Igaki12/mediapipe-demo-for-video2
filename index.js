@@ -256,11 +256,9 @@ videoSelector.addEventListener("change", async (event) => {
                     var data = new google.visualization.arrayToDataTable([['time(秒)', '鼻の高さ', '右手首の高さ', '右肩の高さ', '右足首の高さ'], ...landmarksList.map((landmark, index) => [landmark.currentTime, -landmark.result.landmarks[0][0].y, -landmark.result.landmarks[0][15].y, -landmark.result.landmarks[0][13].y, -landmark.result.landmarks[0][29].y])]);
               
                       var options = {
-                        title: '鼻・右手首・右肩・右足首の高さの推移',
-                        subTitle: 'landmark(画面内の座標)を基に計算',
+                        title: '鼻・右手首・右肩・右足首の高さの推移(landmark:写真の中の位置を基準にした座標)',
                         hAxis: {title: 'time(秒)', minValue: 0, maxValue: video.duration},
-                        vAxis: {title: '高さ(画面内での割合)', minValue: -1, maxValue: 1},
-                        legend: 'none',
+                        vAxis: {title: '高さ(画面内での割合)', minValue: -1, maxValue: 0},
                         lineWidth: 1,
                         pointSize: 2,
                         pointShape: 'circle',
@@ -276,7 +274,26 @@ videoSelector.addEventListener("change", async (event) => {
                       var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
               
                       chart.draw(data, options);
-                      console.log("Finished drawing chart");
+                      console.log("Start drawing Chart 2");
+                        var data2 = new google.visualization.arrayToDataTable([['time(秒)', '鼻の高さ', '右手首の高さ', '右肩の高さ', '右足首の高さ'], ...landmarksList.map((landmark, index) => [landmark.currentTime, -landmark.result.worldLandmarks[0][0].y, -landmark.result.worldLandmarks[0][15].y, -landmark.result.worldLandmarks[0][13].y, -landmark.result.worldLandmarks[0][29].y])]);
+                        var options2 = {
+                            title: '鼻・右手首・右肩・右足首の高さの推移(worldLandmark:実際の推定高度を基準にした座標)',
+                            hAxis: {title: 'time(秒)', minValue: 0, maxValue: video.duration},
+                            vAxis: {title: '高さ(cm)'},
+                            lineWidth: 1,
+                            pointSize: 2,
+                            pointShape: 'circle',
+                            legend: { position: 'top' },
+                            series: [
+                                {color: '#FF0000',labelInLegend: '鼻の高さ'},
+                                {color: '#00FF00',labelInLegend: '右手首の高さ'},
+                                {color: '#0000FF',labelInLegend: '右肩の高さ'},
+                                {color: '#FFFF00',labelInLegend: '右足首の高さ'}
+                            ]
+                        };
+                        var chart2 = new google.visualization.ScatterChart(document.getElementById('chart_div2'));
+                        chart2.draw(data2, options2);
+                        
                     }
         }, video.duration * 1000 + 2000);
 
