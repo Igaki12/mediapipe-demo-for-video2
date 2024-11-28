@@ -263,6 +263,7 @@ videoSelector.addEventListener("change", async (event) => {
                         lineWidth: 1,
                         pointSize: 2,
                         pointShape: 'circle',
+                        legend: { position: 'top' },
                         series: [
                             {color: '#FF0000',labelInLegend: '鼻の高さ'},
                             {color: '#00FF00',labelInLegend: '右手の高さ'},
