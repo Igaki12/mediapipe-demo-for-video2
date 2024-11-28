@@ -78,11 +78,12 @@ videoSelector.addEventListener("change", async (event) => {
         }
         let lastVideoTime = -1;
         let startTimeMs = performance.now();
+        console.log("performance.now() : ", performance.now());
         // detectForVideo()の準備が整ってから動画の再生を開始
         video.play();
         // predictVideo()を呼び出す
         predictVideo();
-        
+
 
         async function predictVideo() {
             if (video.paused) {
@@ -90,7 +91,7 @@ videoSelector.addEventListener("change", async (event) => {
             }
             if (lastVideoTime !== video.currentTime) {
                 lastVideoTime = video.currentTime;
-                poseLandmarker.detectForVideo(video, startTimeMs, async (result) => {
+                poseLandmarker.detectForVideo(video, startTimeMs,(result) => {
                     canvasCtx.save();
                     canvasCtx.clearRect(0, 0, output_canvas.width, output_canvas.height);
                     for (const landmark of result.landmarks) {
