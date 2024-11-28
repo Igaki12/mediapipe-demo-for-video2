@@ -293,7 +293,7 @@ videoSelector.addEventListener("change", async (event) => {
                         };
                         var chart2 = new google.visualization.ScatterChart(document.getElementById('chart_div2'));
                         chart2.draw(data2, options2);
-
+                        console.log("Finished drawing Chart 2");
                     }
         }, video.duration * 1000 + 2000);
 
