@@ -153,7 +153,8 @@ videoSelector.addEventListener("change", async (event) => {
                     const drawingUtils = new DrawingUtils(frameCanvasCtx);
                     drawingUtils.clear();
                     drawingUtils.drawLandmarks(result.result.landmarks[0], {
-                        radius: (data) => DrawingUtils.lerp(data.from?.z ?? 0, -0.15, 0.1, 5, 1)
+                        radius: (data) => DrawingUtils.lerp(data.from?.z ?? 0, -0.15, 0.1, 5, 1),
+                        color : "black",
                     });
                     drawingUtils.drawConnectors(result.result.landmarks[0], PoseLandmarker.POSE_CONNECTIONS);
                     frameCanvasCtx.restore();
