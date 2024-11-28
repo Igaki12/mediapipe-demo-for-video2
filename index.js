@@ -134,7 +134,7 @@ videoSelector.addEventListener("change", async (event) => {
             console.log("landmarksList : ", landmarksList);
             frameSlider.addEventListener("change", (event) => {
                 const result = landmarksList[event.target.value];
-                const index = event.target.value;
+                const index = parseInt(event.target.value);
                 frameSliderValue.innerText = "[" + (index+1) + "/" + landmarksList.length + "枚目] " + result.currentTime + "秒";
                 if (result) {
                     //     <table id="landmarkTable">
