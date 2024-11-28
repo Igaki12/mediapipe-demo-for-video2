@@ -150,6 +150,7 @@ videoSelector.addEventListener("change", async (event) => {
                     frameCanvas.height = video.videoHeight * 0.25;
                     frameCanvas.style.display = "block";
                     frameCanvas.style.border = "1px solid black";
+                    frameCanvas.style.backgroundColor = "white";
                     const drawingUtils = new DrawingUtils(frameCanvasCtx);
                     // drawingUtils.clear();
                     drawingUtils.drawLandmarks(result.result.landmarks[0], {
