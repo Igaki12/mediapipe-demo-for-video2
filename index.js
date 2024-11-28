@@ -92,6 +92,7 @@ videoSelector.addEventListener("change", async (event) => {
             if (lastVideoTime !== video.currentTime) {
                 lastVideoTime = video.currentTime;
                 poseLandmarker.detectForVideo(video, startTimeMs,(result) => {
+                    console.log("landmark : ", result.landmarks[0]);
                     canvasCtx.save();
                     canvasCtx.clearRect(0, 0, output_canvas.width, output_canvas.height);
                     for (const landmark of result.landmarks) {
