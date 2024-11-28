@@ -130,13 +130,33 @@ videoSelector.addEventListener("change", async (event) => {
             frameSlider.max = landmarksList.length - 1;
             const frameSliderValue = document.getElementById("frameSliderValue");
             frameSliderValue.innerText = "[1/" + landmarksList.length + "枚目] 0秒";
+
+
             const landmarkTable = document.getElementById("landmarkTable");
             console.log("landmarksList : ", landmarksList);
             frameSlider.addEventListener("change", (event) => {
                 const result = landmarksList[event.target.value];
                 const index = parseInt(event.target.value);
+
+
+
+
                 frameSliderValue.innerText = "[" + (index+1) + "/" + landmarksList.length + "枚目] " + result.currentTime + "秒";
                 if (result) {
+                    const frameCanvas = document.getElementById("frameCanvas");
+                    const frameCanvasCtx = frameCanvas.getContext("2d");
+                    frameCanvasCtx.clearRect(0, 0, frameCanvas.width, frameCanvas.height);
+                    frameCanvas.width = video.videoWidth;
+                    frameCanvas.height = video.videoHeight;
+                    frameCanvas.style.display = "block";
+                    frameCanvas.style.border = "1px solid black";
+                    const drawingUtils = new DrawingUtils(frameCanvasCtx);
+                    drawingUtils.clear();
+                    drawingUtils.drawLandmarks(result.result.landmarks[0], {
+                        radius: (data) => DrawingUtils.lerp(data.from?.z ?? 0, -0.15, 0.1, 5, 1)
+                    });
+                    drawingUtils.drawConnectors(result.result.landmarks[0], PoseLandmarker.POSE_CONNECTIONS);
+                    frameCanvasCtx.restore();
                     //     <table id="landmarkTable">
                     //       <tr>
                     //       <th>部位 (Original) </th>
