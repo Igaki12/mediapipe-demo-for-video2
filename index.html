@@ -34,23 +34,11 @@ limitations under the License. -->
     <h2>Demo : 動画を切り分けたそれぞれのフレームで姿勢を感知する</h2>
     <input type="file" id="videoSelector" accept="video/*">
     <video id="video" crossorigin="anonymous" controls style="transform: none;" width="100%" ></video>
-    <h2>動画を画像として切り分ける</h2>
-    <div id="videoFrameWrapper">
-        <!-- <img id="videoFrame0" crossorigin="anonymous" title="ここに画像が表示されます" loading="lazy" /> -->
-    </div>
-    <h2>それぞれの画像に対して姿勢を検出する</h2>
-    <div id="frameImageWrapper">
+    <h2>動画に姿勢予測結果を重ねる</h2>
+<canvas id="output_canvas"></canvas>
+    <h2>それぞれのタイミングでの姿勢予測結果を取得する</h2>
 
-    </div>
-    <h2>検出した姿勢の座標</h2>
-    <table id="worldLandmarksTable">
-      <tr>
-        <th>フレーム</th>
-        <th>X座標</th>
-        <th>Y座標</th>
-        <th>Z座標</th>
-      </tr>
-    </table>
+    <h2>動画内で特徴的な姿勢のタイミングとその座標を取得する</h2>
 
   </section>
 </body>
