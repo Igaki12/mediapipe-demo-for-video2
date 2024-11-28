@@ -277,7 +277,7 @@ videoSelector.addEventListener("change", async (event) => {
                       console.log("Start drawing Chart 2");
                         var data2 = new google.visualization.arrayToDataTable([['time(秒)', '鼻の高さ', '右手首の高さ', '右肩の高さ', '右足首の高さ'], ...landmarksList.map((landmark, index) => [landmark.currentTime, -100 * landmark.result.worldLandmarks[0][0].y, -100 * landmark.result.worldLandmarks[0][15].y, -100 * landmark.result.worldLandmarks[0][13].y, -100 * landmark.result.worldLandmarks[0][29].y])]);
                         var options2 = {
-                            title: '鼻・右手首・右肩・右足首の高さの推移(worldLandmark:実際の推定高度を基準にした座標)',
+                            title: '鼻・右手首・右肩・右足首の高さの推移(worldLandmark:腰の高さを0cmとした実世界の推定高度)',
                             hAxis: {title: 'time(秒)', minValue: 0, maxValue: video.duration},
                             vAxis: {title: '高さ(cm)'},
                             lineWidth: 1,
