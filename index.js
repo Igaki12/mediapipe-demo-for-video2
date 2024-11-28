@@ -61,10 +61,10 @@ videoSelector.addEventListener("change", async (event) => {
         console.log("video.videoHeight : ", video.videoHeight);
 
         const output_canvas = document.getElementById("output_canvas");
-        output_canvas.style.width = video.videoWidth + "px";
-        output_canvas.style.height = video.videoHeight + "px";
-        // output_canvas.width = video.videoWidth;
-        // output_canvas.height = video.videoHeight;
+        // output_canvas.style.width = video.videoWidth + "px";
+        // output_canvas.style.height = video.videoHeight + "px";
+        output_canvas.width = video.videoWidth;
+        output_canvas.height = video.videoHeight;
         output_canvas.style.top = video.offsetTop + "px";
         output_canvas.style.left = video.offsetLeft + "px";
         output_canvas.style.position = "absolute";
