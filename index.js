@@ -235,8 +235,10 @@ videoSelector.addEventListener("change", async (event) => {
                         landmarkTable.appendChild(tr);
                     }
                     console.log("Finished updating landmarkTable");
+                }
 
-                    console.log("start Google Charts API");
+            })
+            console.log("start Google Charts API");
                     google.charts.load('current', {'packages':['corechart']});
                     google.charts.setOnLoadCallback(drawChart);
               
@@ -258,7 +260,7 @@ videoSelector.addEventListener("change", async (event) => {
                         vAxis: {title: '鼻の高さ', minValue: -1, maxValue: 1},
                         legend: 'none',
                         lineWidth: 1,
-                        pointSize: 0,
+                        pointSize: 2,
                       };
               
                       var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
@@ -266,9 +268,6 @@ videoSelector.addEventListener("change", async (event) => {
                       chart.draw(data, options);
                       console.log("Finished drawing chart");
                     }
-                }
-
-            })
         }, video.duration * 1000 + 2000);
 
 
