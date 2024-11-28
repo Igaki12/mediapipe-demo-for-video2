@@ -146,8 +146,8 @@ videoSelector.addEventListener("change", async (event) => {
                     const frameCanvas = document.getElementById("frameCanvas");
                     const frameCanvasCtx = frameCanvas.getContext("2d");
                     frameCanvasCtx.clearRect(0, 0, frameCanvas.width, frameCanvas.height);
-                    frameCanvas.width = video.videoWidth;
-                    frameCanvas.height = video.videoHeight;
+                    frameCanvas.width = video.videoWidth * 0.25;
+                    frameCanvas.height = video.videoHeight * 0.25;
                     frameCanvas.style.display = "block";
                     frameCanvas.style.border = "1px solid black";
                     const drawingUtils = new DrawingUtils(frameCanvasCtx);
