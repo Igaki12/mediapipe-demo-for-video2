@@ -150,16 +150,16 @@ videoSelector.addEventListener("change", async (event) => {
                     frameCanvas.height = video.videoHeight * 0.25;
                     frameCanvas.style.display = "block";
                     frameCanvas.style.border = "1px solid black";
-                    frameCanvas.style.backgroundColor = "white";
+                    frameCanvas.style.backgroundColor = "black";
                     const drawingUtils = new DrawingUtils(frameCanvasCtx);
                     // drawingUtils.clear();
                     drawingUtils.drawLandmarks(result.result.landmarks[0], {
                         radius: (data) => DrawingUtils.lerp(data.from?.z ?? 0, -0.15, 0.1, 5, 1),
-                        color : "black",
+                        color : "white",
                         fillColor : "gray"
                     });
                     drawingUtils.drawConnectors(result.result.landmarks[0], PoseLandmarker.POSE_CONNECTIONS, {
-                        color : "black"
+                        color : "white"
                     });
                     frameCanvasCtx.restore();
                     //     <table id="landmarkTable">
