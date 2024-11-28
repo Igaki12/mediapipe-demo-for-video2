@@ -151,7 +151,7 @@ videoSelector.addEventListener("change", async (event) => {
                     frameCanvas.style.display = "block";
                     frameCanvas.style.border = "1px solid black";
                     const drawingUtils = new DrawingUtils(frameCanvasCtx);
-                    drawingUtils.clear();
+                    // drawingUtils.clear();
                     drawingUtils.drawLandmarks(result.result.landmarks[0], {
                         radius: (data) => DrawingUtils.lerp(data.from?.z ?? 0, -0.15, 0.1, 5, 1),
                         color : "black",
