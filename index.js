@@ -253,7 +253,7 @@ videoSelector.addEventListener("change", async (event) => {
                     //     [ 6.5,    7]
                     //   ]);
                     // var data = google.visualization.arrayToDataTable(([['time(秒)', '鼻の高さ'], ...landmarksList.map((landmark, index) => [landmark.currentTime, landmark.result.landmarks[0][0].y])]));
-                    var data = new google.visualization.arrayToDataTable([['time(秒)', '鼻の高さ', '右手首の高さ', '右肩の高さ', '右足首の高さ'], ...landmarksList.map((landmark, index) => [landmark.currentTime, landmark.result.landmarks[0][0].y, landmark.result.landmarks[0][15].y, landmark.result.landmarks[0][13].y, landmark.result.landmarks[0][29].y])]);
+                    var data = new google.visualization.arrayToDataTable([['time(秒)', '鼻の高さ', '右手首の高さ', '右肩の高さ', '右足首の高さ'], ...landmarksList.map((landmark, index) => [landmark.currentTime, -landmark.result.landmarks[0][0].y, -landmark.result.landmarks[0][15].y, -landmark.result.landmarks[0][13].y, -landmark.result.landmarks[0][29].y])]);
               
                       var options = {
                         title: '鼻・右手首・右肩・右足首の高さの推移',
