@@ -235,6 +235,37 @@ videoSelector.addEventListener("change", async (event) => {
                         landmarkTable.appendChild(tr);
                     }
                     console.log("Finished updating landmarkTable");
+
+                    console.log("start Google Charts API");
+                    google.charts.load('current', {'packages':['corechart']});
+                    google.charts.setOnLoadCallback(drawChart);
+              
+                    function drawChart() {
+                    //   var data = google.visualization.arrayToDataTable([
+                    //     ['Age', 'Weight'],
+                    //     [ 8,      12],
+                    //     [ 4,      5.5],
+                    //     [ 11,     14],
+                    //     [ 4,      5],
+                    //     [ 3,      3.5],
+                    //     [ 6.5,    7]
+                    //   ]);
+                    var data = google.visualization.arrayToDataTable(([['time(秒)', '鼻の高さ'], ...landmarksList.map((landmark, index) => [landmark.currentTime, landmark.result.landmarks[0][0].y])]));
+              
+                      var options = {
+                        title: '鼻の高さの推移',
+                        hAxis: {title: 'time(秒)', minValue: 0, maxValue: video.duration},
+                        vAxis: {title: '鼻の高さ', minValue: -1, maxValue: 1},
+                        legend: 'none',
+                        lineWidth: 1,
+                        pointSize: 0,
+                      };
+              
+                      var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
+              
+                      chart.draw(data, options);
+                      console.log("Finished drawing chart");
+                    }
                 }
 
             })

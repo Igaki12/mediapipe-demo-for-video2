@@ -23,7 +23,8 @@ limitations under the License. -->
   <script type="module" src="index.js"></script>
   <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
   <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
-  </script>
+<!-- Google Chartsから -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 
 <body>
@@ -39,18 +40,21 @@ limitations under the License. -->
     <p>動画は自動で再生され、再生が終了した後2秒後に全ての予測結果が表示されます。</p>
     <h2>それぞれのタイミングでの姿勢予測結果を取得する</h2>
     <!-- <input type="slider" -->
-     <input type="range" id="frameSlider" min="0" max="0" value="0" step="1" style="width: 100%;">
-     <p id="frameSliderValue">0</p>
-     <canvas id="frameCanvas" style="display: none;"></canvas>
+    <input type="range" id="frameSlider" min="0" max="0" value="0" step="1" style="width: 100%;">
+    <p id="frameSliderValue">0</p>
+    <canvas id="frameCanvas" style="display: none;"></canvas>
     <p>スライダーを動かすことで、動画内の特定のフレームでの姿勢予測結果を取得できます。</p>
     <table id="landmarkTable">
       <tr>
         <th>部位 (Original) </th>
-        <th>X座標/写真左方向(cm)</th><th>Y座標/写真下方向(cm)</th><th>Z座標/写真手前方向(cm)</th>
+        <th>X座標/写真左方向(cm)</th>
+        <th>Y座標/写真下方向(cm)</th>
+        <th>Z座標/写真手前方向(cm)</th>
       </tr>
     </table>
 
-    <h2>動画内で特徴的な姿勢のタイミングとその座標を取得する</h2>
+    <h2>動画内での肩の高さを経時的にグラフ化する</h2>
+    <div id="chart_div" style="width: 100%; height: 500px;"></div>
 
   </section>
 </body>
