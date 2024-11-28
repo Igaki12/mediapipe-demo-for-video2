@@ -127,9 +127,9 @@ videoSelector.addEventListener("change", async (event) => {
         setTimeout(() => {
             
             const frameSlider = document.getElementById("frameSlider");
-            frameSlider.max = landmarksList.length;
+            frameSlider.max = landmarksList.length - 1;
             const frameSliderValue = document.getElementById("frameSliderValue");
-            frameSliderValue.innerText = "0";
+            frameSliderValue.innerText = "[0/" + landmarksList.length + "枚目] 0秒";
             const landmarkTable = document.getElementById("landmarkTable");
             console.log("landmarksList : ", landmarksList);
             frameSlider.addEventListener("change", (event) => {
