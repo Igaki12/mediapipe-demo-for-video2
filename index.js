@@ -252,15 +252,22 @@ videoSelector.addEventListener("change", async (event) => {
                     //     [ 3,      3.5],
                     //     [ 6.5,    7]
                     //   ]);
-                    var data = google.visualization.arrayToDataTable(([['time(秒)', '鼻の高さ'], ...landmarksList.map((landmark, index) => [landmark.currentTime, landmark.result.landmarks[0][0].y])]));
+                    // var data = google.visualization.arrayToDataTable(([['time(秒)', '鼻の高さ'], ...landmarksList.map((landmark, index) => [landmark.currentTime, landmark.result.landmarks[0][0].y])]));
+                    var data = new google.visualization.arrayToDataTable([['time(秒)', '鼻の高さ', '右手の高さ', '右肩の高さ'], ...landmarksList.map((landmark, index) => [landmark.currentTime, landmark.result.landmarks[0][0].y, landmark.result.landmarks[0][16].y, landmark.result.landmarks[0][12].y])]);
               
                       var options = {
-                        title: '鼻の高さの推移',
+                        title: '鼻・右手・右肩の高さの推移',
                         hAxis: {title: 'time(秒)', minValue: 0, maxValue: video.duration},
-                        vAxis: {title: '鼻の高さ', minValue: -1, maxValue: 1},
+                        vAxis: {title: '高さ(画面内での割合)', minValue: -1, maxValue: 1},
                         legend: 'none',
                         lineWidth: 1,
                         pointSize: 2,
+                        pointShape: 'circle',
+                        series: [
+                            {color: '#FF0000',labelInLegend: '鼻の高さ'},
+                            {color: '#00FF00',labelInLegend: '右手の高さ'},
+                            {color: '#0000FF',labelInLegend: '右肩の高さ'}
+                        ]
                       };
               
                       var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
