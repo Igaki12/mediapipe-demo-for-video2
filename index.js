@@ -70,6 +70,8 @@ videoSelector.addEventListener("change", async (event) => {
         const canvasCtx = output_canvas.getContext("2d");
         const drawingUtils = new DrawingUtils(canvasCtx);
 
+
+
         if (!poseLandmarker) {
             console.log("poseLandmarker is not ready yet.");
             return;
@@ -83,9 +85,8 @@ videoSelector.addEventListener("change", async (event) => {
         // detectForVideo()の準備が整ってから動画の再生を開始
         // video.play();
         // videoがplayし始めたら、predictVideo()を呼び出す
+        let landmarksList = [];
         video.addEventListener("play", predictVideo);
-        // predictVideo();
-
 
         async function predictVideo() {
             if (video.paused) {
@@ -93,8 +94,9 @@ videoSelector.addEventListener("change", async (event) => {
             }
             if (lastVideoTime !== video.currentTime) {
                 lastVideoTime = video.currentTime;
-                poseLandmarker.detectForVideo(video, (1000 * video.currentTime) ,(result) => {
+                poseLandmarker.detectForVideo(video, (1000 * video.currentTime), (result) => {
                     console.log("landmark : ", result.landmarks[0]);
+                    landmarksList.push({ currentTime: video.currentTime, result: result });
                     canvasCtx.save();
                     canvasCtx.clearRect(0, 0, output_canvas.width, output_canvas.height);
                     for (const landmark of result.landmarks) {
@@ -111,6 +113,94 @@ videoSelector.addEventListener("change", async (event) => {
                 window.requestAnimationFrame(predictVideo);
             }
         }
+
+
+        const frameSlider = document.getElementById("frameSlider");
+        frameSlider.max = video.duration * 1000;
+        const frameSliderValue = document.getElementById("frameSliderValue");
+        frameSliderValue.innerText = "0";
+        const landmarkTable = document.getElementById("landmarkTable");
+        frameSlider.addEventListener("input", (event) => {
+            const currentTime = parseInt(event.target.value) / 1000;
+            frameSliderValue.innerText = currentTime;
+            const result = landmarksList.find((landmark) => landmark.currentTime == currentTime);
+            if (result) {
+                //     <table id="landmarkTable">
+                //       <tr>
+                //       <th>部位 (Original) </th>
+                //       <th>X座標/写真左方向(cm)</th><th>Y座標/写真下方向(cm)</th><th>Z座標/写真手前方向(cm)</th>
+                //     </tr>
+                //   </table>
+                const positionNamesJP = [
+                    "鼻 (nose)",
+                    "左目-内側 (left eye - inner)",
+                    "左目 (left eye)",
+                    "左目-外側 (left eye - outer)",
+                    "右目-内側 (right eye - inner)",
+                    "右目 (right eye)",
+                    "右目-外側 (right eye - outer)",
+                    "左耳 (left ear)",
+                    "右耳 (right ear)",
+                    "口-左縁 (mouth - left)",
+                    "口-右縁 (mouth - right)",
+                    "左肩 (left shoulder)",
+                    "右肩 (right shoulder)",
+                    "左肘 (left elbow)",
+                    "右肘 (right elbow)",
+                    "左手首 (left wrist)",
+                    "右手首 (right wrist)",
+                    "左小指 (left pinky)",
+                    "右小指 (right pinky)",
+                    "左人差し指 (left index)",
+                    "右人差し指 (right index)",
+                    "左親指 (left thumb)",
+                    "右親指 (right thumb)",
+                    "左腰 (left hip)",
+                    "右腰 (right hip)",
+                    "左膝 (left knee)",
+                    "右膝 (right knee)",
+                    "左足首 (left ankle)",
+                    "右足首 (right ankle)",
+                    "左かかと (left heel)",
+                    "右かかと (right heel)",
+                    "左足先 (left foot index)",
+                    "右足先 (right foot index)"
+                ];
+                landmarkTable.innerHTML = "";
+                const tr = document.createElement("tr");
+                const th1 = document.createElement("th");
+                th1.innerText = "部位 (Original)";
+                tr.appendChild(th1);
+                const th2 = document.createElement("th");
+                th2.innerText = "X座標/ 写真左方向(cm)";
+                tr.appendChild(th2);
+                const th3 = document.createElement("th");
+                th3.innerText = "Y座標/ 写真下方向(cm)";
+                tr.appendChild(th3);
+                const th4 = document.createElement("th");
+                th4.innerText = "Z座標/ 写真手前方向(cm)";
+                tr.appendChild(th4);
+                landmarkTable.appendChild(tr);
+                for (let i = 0; i < result.result.worldLandmarks[0].length; i++) {
+                    const tr = document.createElement("tr");
+                    const td1 = document.createElement("td");
+                    td1.innerText = i + ". " + positionNamesJP[i];
+                    tr.appendChild(td1);
+                    const td2 = document.createElement("td");
+                    td2.innerText = result.result.worldLandmarks[0][i].x;
+                    tr.appendChild(td2);
+                    const td3 = document.createElement("td");
+                    td3.innerText = result.result.worldLandmarks[0][i].y;
+                    tr.appendChild(td3);
+                    const td4 = document.createElement("td");
+                    td4.innerText = result.result.worldLandmarks[0][i].z;
+                    tr.appendChild(td4);
+                    landmarkTable.appendChild(tr);
+                }
+            }
+
+        })
+
 
 
 
