@@ -129,13 +129,13 @@ videoSelector.addEventListener("change", async (event) => {
             const frameSlider = document.getElementById("frameSlider");
             frameSlider.max = landmarksList.length - 1;
             const frameSliderValue = document.getElementById("frameSliderValue");
-            frameSliderValue.innerText = "[0/" + landmarksList.length + "枚目] 0秒";
+            frameSliderValue.innerText = "[1/" + landmarksList.length + "枚目] 0秒";
             const landmarkTable = document.getElementById("landmarkTable");
             console.log("landmarksList : ", landmarksList);
             frameSlider.addEventListener("change", (event) => {
                 const result = landmarksList[event.target.value];
                 const index = event.target.value;
-                frameSliderValue.innerText = "[" + index + "/" + landmarksList.length + "枚目] " + result.currentTime + "秒";
+                frameSliderValue.innerText = "[" + (index+1) + "/" + landmarksList.length + "枚目] " + result.currentTime + "秒";
                 if (result) {
                     //     <table id="landmarkTable">
                     //       <tr>
@@ -196,7 +196,7 @@ videoSelector.addEventListener("change", async (event) => {
                     for (let i = 0; i < result.result.worldLandmarks[0].length; i++) {
                         const tr = document.createElement("tr");
                         const td1 = document.createElement("td");
-                        td1.innerText = i + ". " + positionNamesJP[i];
+                        td1.innerText = (i+1) + ". " + positionNamesJP[i];
                         tr.appendChild(td1);
                         const td2 = document.createElement("td");
                         td2.innerText = Math.round(result.result.worldLandmarks[0][i].x * 1000) / 10;
