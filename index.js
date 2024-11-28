@@ -77,7 +77,6 @@ videoSelector.addEventListener("change", async (event) => {
             poseLandmarker.setOptions({ runningMode: "VIDEO" });
         }
         let lastVideoTime = -1;
-        let startTimeMs = performance.now();
         console.log("performance.now() : ", performance.now());
         // detectForVideo()の準備が整ってから動画の再生を開始
         // video.play();
@@ -92,7 +91,7 @@ videoSelector.addEventListener("change", async (event) => {
             }
             if (lastVideoTime !== video.currentTime) {
                 lastVideoTime = video.currentTime;
-                poseLandmarker.detectForVideo(video, startTimeMs,(result) => {
+                poseLandmarker.detectForVideo(video, (1000 * video.currentTime) ,(result) => {
                     console.log("landmark : ", result.landmarks[0]);
                     canvasCtx.save();
                     canvasCtx.clearRect(0, 0, output_canvas.width, output_canvas.height);
