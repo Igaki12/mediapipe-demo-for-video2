@@ -127,24 +127,13 @@ videoSelector.addEventListener("change", async (event) => {
         setTimeout(() => {
             console.log("landmarksList : ", landmarksList);
             const frameSlider = document.getElementById("frameSlider");
-            frameSlider.max = video.duration * 1000;
+            frameSlider.max = landmarksList.length;
             const frameSliderValue = document.getElementById("frameSliderValue");
             frameSliderValue.innerText = "0";
             const landmarkTable = document.getElementById("landmarkTable");
-            frameSlider.addEventListener("input", (event) => {
-                const currentTime = parseInt(event.target.value) / 1000;
-                frameSliderValue.innerText = currentTime;
-                // const result = landmarksList.find((landmark) => landmark.currentTime == currentTime);
-                // 見つからない場合は、最も近いcurrentTimeのlandmarkを取得
-                let result = landmarksList.find((landmark) => landmark.currentTime == currentTime);
-                if (!result) {
-                    const currentTimeList = landmarksList.map((landmark) => landmark.currentTime);
-                    const nearestTime = currentTimeList.reduce((prev, curr) => {
-                        return (Math.abs(curr - currentTime) < Math.abs(prev - currentTime) ? curr : prev);
-                    }
-                    );
-                    result = landmarksList.find((landmark) => landmark.currentTime == nearestTime);
-                }
+            frameSlider.addEventListener("input", async(event) => {
+                const index = event.target.value;
+                frameSliderValue.innerText = "[" + index + "]" + " : " + landmarksList[index].currentTime + "秒";
                 if (result) {
                     //     <table id="landmarkTable">
                     //       <tr>
