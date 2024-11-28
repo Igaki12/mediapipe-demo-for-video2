@@ -257,6 +257,7 @@ videoSelector.addEventListener("change", async (event) => {
               
                       var options = {
                         title: '鼻・右手首・右肩・右足首の高さの推移',
+                        subTitle: 'landmark(画面内の座標)を基に計算',
                         hAxis: {title: 'time(秒)', minValue: 0, maxValue: video.duration},
                         vAxis: {title: '高さ(画面内での割合)', minValue: -1, maxValue: 1},
                         legend: 'none',
