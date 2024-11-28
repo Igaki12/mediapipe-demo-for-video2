@@ -94,7 +94,7 @@ videoSelector.addEventListener("change", async (event) => {
             // 消音で再生する
             video.muted = true;
             video.play();
-        }, 1000);
+        }, 3000);
 
 
         async function predictVideo() {
@@ -125,7 +125,7 @@ videoSelector.addEventListener("change", async (event) => {
 
 
         setTimeout(() => {
-            
+
             const frameSlider = document.getElementById("frameSlider");
             frameSlider.max = landmarksList.length - 1;
             const frameSliderValue = document.getElementById("frameSliderValue");
@@ -141,7 +141,7 @@ videoSelector.addEventListener("change", async (event) => {
 
 
 
-                frameSliderValue.innerText = "[" + (index+1) + "/" + landmarksList.length + "枚目] " + result.currentTime + "秒";
+                frameSliderValue.innerText = "[" + (index + 1) + "/" + landmarksList.length + "枚目] " + result.currentTime + "秒";
                 if (result) {
                     const frameCanvas = document.getElementById("frameCanvas");
                     const frameCanvasCtx = frameCanvas.getContext("2d");
@@ -155,11 +155,11 @@ videoSelector.addEventListener("change", async (event) => {
                     // drawingUtils.clear();
                     drawingUtils.drawLandmarks(result.result.landmarks[0], {
                         radius: (data) => DrawingUtils.lerp(data.from?.z ?? 0, -0.15, 0.1, 5, 1),
-                        color : "white",
-                        fillColor : "gray"
+                        color: "white",
+                        fillColor: "gray"
                     });
                     drawingUtils.drawConnectors(result.result.landmarks[0], PoseLandmarker.POSE_CONNECTIONS, {
-                        color : "white"
+                        color: "white"
                     });
                     frameCanvasCtx.restore();
                     //     <table id="landmarkTable">
@@ -221,7 +221,7 @@ videoSelector.addEventListener("change", async (event) => {
                     for (let i = 0; i < result.result.worldLandmarks[0].length; i++) {
                         const tr = document.createElement("tr");
                         const td1 = document.createElement("td");
-                        td1.innerText = (i+1) + ". " + positionNamesJP[i];
+                        td1.innerText = (i + 1) + ". " + positionNamesJP[i];
                         tr.appendChild(td1);
                         const td2 = document.createElement("td");
                         td2.innerText = Math.round(result.result.worldLandmarks[0][i].x * 1000) / 10;
@@ -239,65 +239,66 @@ videoSelector.addEventListener("change", async (event) => {
 
             })
             console.log("start Google Charts API");
-                    google.charts.load('current', {'packages':['corechart']});
-                    google.charts.setOnLoadCallback(drawChart);
-              
-                    function drawChart() {
-                    //   var data = google.visualization.arrayToDataTable([
-                    //     ['Age', 'Weight'],
-                    //     [ 8,      12],
-                    //     [ 4,      5.5],
-                    //     [ 11,     14],
-                    //     [ 4,      5],
-                    //     [ 3,      3.5],
-                    //     [ 6.5,    7]
-                    //   ]);
-                    // var data = google.visualization.arrayToDataTable(([['time(秒)', '鼻の高さ'], ...landmarksList.map((landmark, index) => [landmark.currentTime, landmark.result.landmarks[0][0].y])]));
-                    var data = new google.visualization.arrayToDataTable([['time(秒)', '鼻の高さ', '右手首の高さ', '右肩の高さ', '右足首の高さ'], ...landmarksList.map((landmark, index) => [landmark.currentTime, -landmark.result.landmarks[0][0].y, -landmark.result.landmarks[0][15].y, -landmark.result.landmarks[0][13].y, -landmark.result.landmarks[0][29].y])]);
-              
-                      var options = {
-                        title: '鼻・右手首・右肩・右足首の高さの推移(landmark:写真の中の位置を基準にした座標)',
-                        hAxis: {title: 'time(秒)', minValue: 0, maxValue: video.duration},
-                        vAxis: {title: '高さ(画面内での割合)', minValue: -1, maxValue: 0},
-                        lineWidth: 1,
-                        pointSize: 2,
-                        pointShape: 'circle',
-                        legend: { position: 'top' },
-                        series: [
-                            {color: '#FF0000',labelInLegend: '鼻の高さ'},
-                            {color: '#00FF00',labelInLegend: '右手首の高さ'},
-                            {color: '#0000FF',labelInLegend: '右肩の高さ'},
-                            {color: '#FFFF00',labelInLegend: '右足首の高さ'}
-                        ]
-                      };
-              
-                      var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
-              
-                      chart.draw(data, options);
-                      console.log("Start drawing Chart 2");
-                    //   landmarksListでundefinedがあるとエラーが出るので、landmarksListで要素がある部分だけを抽出する
-                    const landmarksListTrim = landmarksList.filter((landmark) => landmark.result.worldLandmarks[0] && landmark.result.worldLandmarks[0].length > 0);
-                        var data2 = new google.visualization.arrayToDataTable([['time(秒)', '鼻の高さ', '右手首の高さ', '右肩の高さ', '右足首の高さ'], ...landmarksListTrim.map((landmark, index) => [landmark.currentTime, -100 * landmark.result.worldLandmarks[0][0].y, -100 * landmark.result.worldLandmarks[0][15].y, -100 * landmark.result.worldLandmarks[0][13].y, -100 * landmark.result.worldLandmarks[0][29].y])]);
-                        var options2 = {
-                            title: '鼻・右手首・右肩・右足首の高さの推移(worldLandmark:腰の高さを0cmとした実世界の推定高度)',
-                            hAxis: {title: 'time(秒)', minValue: 0, maxValue: video.duration},
-                            vAxis: {title: '高さ(cm)'},
-                            lineWidth: 1,
-                            pointSize: 2,
-                            pointShape: 'circle',
-                            legend: { position: 'top' },
-                            series: [
-                                {color: '#FF0000',labelInLegend: '鼻の高さ'},
-                                {color: '#00FF00',labelInLegend: '右手首の高さ'},
-                                {color: '#0000FF',labelInLegend: '右肩の高さ'},
-                                {color: '#FFFF00',labelInLegend: '右足首の高さ'}
-                            ]
-                        };
-                        var chart2 = new google.visualization.ScatterChart(document.getElementById('chart_div2'));
-                        chart2.draw(data2, options2);
-                        console.log("Finished drawing Chart 2");
-                    }
-        }, video.duration * 1000 + 2000);
+            //   landmarksListでundefinedがあるとエラーが出るので、landmarksListで要素がある部分だけを抽出する
+            const landmarksListTrim = landmarksList.filter((landmark) => landmark.result.worldLandmarks[0] && landmark.result.worldLandmarks[0].length > 0);
+            google.charts.load('current', { 'packages': ['corechart'] });
+            google.charts.setOnLoadCallback(drawChart);
+
+            function drawChart() {
+                //   var data = google.visualization.arrayToDataTable([
+                //     ['Age', 'Weight'],
+                //     [ 8,      12],
+                //     [ 4,      5.5],
+                //     [ 11,     14],
+                //     [ 4,      5],
+                //     [ 3,      3.5],
+                //     [ 6.5,    7]
+                //   ]);
+                // var data = google.visualization.arrayToDataTable(([['time(秒)', '鼻の高さ'], ...landmarksList.map((landmark, index) => [landmark.currentTime, landmark.result.landmarks[0][0].y])]));
+                var data = new google.visualization.arrayToDataTable([['time(秒)', '鼻の高さ', '右手首の高さ', '右肩の高さ', '右足首の高さ'], ...landmarksListTrim.map((landmark, index) => [landmark.currentTime, -landmark.result.landmarks[0][0].y, -landmark.result.landmarks[0][15].y, -landmark.result.landmarks[0][13].y, -landmark.result.landmarks[0][29].y])]);
+
+                var options = {
+                    title: '鼻・右手首・右肩・右足首の高さの推移(landmark:写真の中の位置を基準にした座標)',
+                    hAxis: { title: 'time(秒)', minValue: 0, maxValue: video.duration },
+                    vAxis: { title: '高さ(画面内での割合)', minValue: -1, maxValue: 0 },
+                    lineWidth: 1,
+                    pointSize: 2,
+                    pointShape: 'circle',
+                    legend: { position: 'top' },
+                    series: [
+                        { color: '#FF0000', labelInLegend: '鼻の高さ' },
+                        { color: '#00FF00', labelInLegend: '右手首の高さ' },
+                        { color: '#0000FF', labelInLegend: '右肩の高さ' },
+                        { color: '#FFFF00', labelInLegend: '右足首の高さ' }
+                    ]
+                };
+
+                var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
+
+                chart.draw(data, options);
+                console.log("Start drawing Chart 2");
+
+                var data2 = new google.visualization.arrayToDataTable([['time(秒)', '鼻の高さ', '右手首の高さ', '右肩の高さ', '右足首の高さ'], ...landmarksListTrim.map((landmark, index) => [landmark.currentTime, -100 * landmark.result.worldLandmarks[0][0].y, -100 * landmark.result.worldLandmarks[0][15].y, -100 * landmark.result.worldLandmarks[0][13].y, -100 * landmark.result.worldLandmarks[0][29].y])]);
+                var options2 = {
+                    title: '鼻・右手首・右肩・右足首の高さの推移(worldLandmark:腰の高さを0cmとした実世界の推定高度)',
+                    hAxis: { title: 'time(秒)', minValue: 0, maxValue: video.duration },
+                    vAxis: { title: '高さ(cm)' },
+                    lineWidth: 1,
+                    pointSize: 2,
+                    pointShape: 'circle',
+                    legend: { position: 'top' },
+                    series: [
+                        { color: '#FF0000', labelInLegend: '鼻の高さ' },
+                        { color: '#00FF00', labelInLegend: '右手首の高さ' },
+                        { color: '#0000FF', labelInLegend: '右肩の高さ' },
+                        { color: '#FFFF00', labelInLegend: '右足首の高さ' }
+                    ]
+                };
+                var chart2 = new google.visualization.ScatterChart(document.getElementById('chart_div2'));
+                chart2.draw(data2, options2);
+                console.log("Finished drawing Chart 2");
+            }
+        }, video.duration * 1000 + 5000);
 
 
 
