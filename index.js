@@ -91,6 +91,8 @@ videoSelector.addEventListener("change", async (event) => {
         let landmarksList = [];
         video.addEventListener("play", predictVideo);
         setTimeout(() => {
+            // 消音で再生する
+            video.muted = true;
             video.play();
         }, 1000);
 
