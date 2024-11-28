@@ -125,13 +125,14 @@ videoSelector.addEventListener("change", async (event) => {
 
 
         setTimeout(() => {
-            console.log("landmarksList : ", landmarksList);
+            
             const frameSlider = document.getElementById("frameSlider");
             frameSlider.max = landmarksList.length;
             const frameSliderValue = document.getElementById("frameSliderValue");
             frameSliderValue.innerText = "0";
             const landmarkTable = document.getElementById("landmarkTable");
-            frameSlider.addEventListener("input", async(event) => {
+            console.log("landmarksList : ", landmarksList);
+            frameSlider.addEventListener("change", (event) => {
                 const index = event.target.value;
                 frameSliderValue.innerText = "[" + index + "]" + " : " + landmarksList[index].currentTime + "秒";
                 if (result) {
@@ -207,6 +208,7 @@ videoSelector.addEventListener("change", async (event) => {
                         tr.appendChild(td4);
                         landmarkTable.appendChild(tr);
                     }
+                    console.log("Finished updating landmarkTable");
                 }
 
             })
