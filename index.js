@@ -67,6 +67,9 @@ videoSelector.addEventListener("change", async (event) => {
         output_canvas.height = video.videoHeight;
         output_canvas.style.top = video.offsetTop + "px";
         output_canvas.style.left = video.offsetLeft + "px";
+        output_canvas.style.position = "absolute";
+        output_canvas.style.zIndex = "1";
+
         const canvasCtx = output_canvas.getContext("2d");
         const drawingUtils = new DrawingUtils(canvasCtx);
 
