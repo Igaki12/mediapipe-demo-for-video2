@@ -253,10 +253,10 @@ videoSelector.addEventListener("change", async (event) => {
                     //     [ 6.5,    7]
                     //   ]);
                     // var data = google.visualization.arrayToDataTable(([['time(秒)', '鼻の高さ'], ...landmarksList.map((landmark, index) => [landmark.currentTime, landmark.result.landmarks[0][0].y])]));
-                    var data = new google.visualization.arrayToDataTable([['time(秒)', '鼻の高さ', '右手の高さ', '右肩の高さ'], ...landmarksList.map((landmark, index) => [landmark.currentTime, landmark.result.landmarks[0][0].y, landmark.result.landmarks[0][16].y, landmark.result.landmarks[0][12].y])]);
+                    var data = new google.visualization.arrayToDataTable([['time(秒)', '鼻の高さ', '右手首の高さ', '右肩の高さ', '右足首の高さ'], ...landmarksList.map((landmark, index) => [landmark.currentTime, landmark.result.landmarks[0][0].y, landmark.result.landmarks[0][15].y, landmark.result.landmarks[0][13].y, landmark.result.landmarks[0][29].y])]);
               
                       var options = {
-                        title: '鼻・右手・右肩の高さの推移',
+                        title: '鼻・右手首・右肩・右足首の高さの推移',
                         hAxis: {title: 'time(秒)', minValue: 0, maxValue: video.duration},
                         vAxis: {title: '高さ(画面内での割合)', minValue: -1, maxValue: 1},
                         legend: 'none',
@@ -266,8 +266,9 @@ videoSelector.addEventListener("change", async (event) => {
                         legend: { position: 'top' },
                         series: [
                             {color: '#FF0000',labelInLegend: '鼻の高さ'},
-                            {color: '#00FF00',labelInLegend: '右手の高さ'},
-                            {color: '#0000FF',labelInLegend: '右肩の高さ'}
+                            {color: '#00FF00',labelInLegend: '右手首の高さ'},
+                            {color: '#0000FF',labelInLegend: '右肩の高さ'},
+                            {color: '#FFFF00',labelInLegend: '右足首の高さ'}
                         ]
                       };
               
