@@ -80,9 +80,10 @@ videoSelector.addEventListener("change", async (event) => {
         let startTimeMs = performance.now();
         console.log("performance.now() : ", performance.now());
         // detectForVideo()の準備が整ってから動画の再生を開始
-        video.play();
-        // predictVideo()を呼び出す
-        predictVideo();
+        // video.play();
+        // videoがplayし始めたら、predictVideo()を呼び出す
+        video.addEventListener("play", predictVideo);
+        // predictVideo();
 
 
         async function predictVideo() {
