@@ -135,7 +135,7 @@ videoSelector.addEventListener("change", async (event) => {
             frameSlider.addEventListener("change", (event) => {
                 const result = landmarksList[event.target.value];
                 const index = event.target.value;
-                frameSliderValue.innerText = "[" + index + "]" + " : " + landmarksList[index].currentTime + "秒";
+                frameSliderValue.innerText = "[" + index + "/" + landmarksList.length + "枚目] " + result.currentTime + "秒";
                 if (result) {
                     //     <table id="landmarkTable">
                     //       <tr>
@@ -199,13 +199,13 @@ videoSelector.addEventListener("change", async (event) => {
                         td1.innerText = i + ". " + positionNamesJP[i];
                         tr.appendChild(td1);
                         const td2 = document.createElement("td");
-                        td2.innerText = result.result.worldLandmarks[0][i].x * 100;
+                        td2.innerText = Math.round(result.result.worldLandmarks[0][i].x * 1000) / 10;
                         tr.appendChild(td2);
                         const td3 = document.createElement("td");
-                        td3.innerText = result.result.worldLandmarks[0][i].y * 100;
+                        td3.innerText = Math.round(result.result.worldLandmarks[0][i].y * 1000) / 10;
                         tr.appendChild(td3);
                         const td4 = document.createElement("td");
-                        td4.innerText = result.result.worldLandmarks[0][i].z * 100;
+                        td4.innerText = Math.round(result.result.worldLandmarks[0][i].z * 1000) / 10;
                         tr.appendChild(td4);
                         landmarkTable.appendChild(tr);
                     }
