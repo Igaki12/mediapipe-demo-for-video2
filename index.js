@@ -197,13 +197,13 @@ videoSelector.addEventListener("change", async (event) => {
                         td1.innerText = i + ". " + positionNamesJP[i];
                         tr.appendChild(td1);
                         const td2 = document.createElement("td");
-                        td2.innerText = result.result.worldLandmarks[0][i].x;
+                        td2.innerText = result.result.worldLandmarks[0][i].x * 100;
                         tr.appendChild(td2);
                         const td3 = document.createElement("td");
-                        td3.innerText = result.result.worldLandmarks[0][i].y;
+                        td3.innerText = result.result.worldLandmarks[0][i].y * 100;
                         tr.appendChild(td3);
                         const td4 = document.createElement("td");
-                        td4.innerText = result.result.worldLandmarks[0][i].z;
+                        td4.innerText = result.result.worldLandmarks[0][i].z * 100;
                         tr.appendChild(td4);
                         landmarkTable.appendChild(tr);
                     }
