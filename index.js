@@ -133,6 +133,7 @@ videoSelector.addEventListener("change", async (event) => {
             const landmarkTable = document.getElementById("landmarkTable");
             console.log("landmarksList : ", landmarksList);
             frameSlider.addEventListener("change", (event) => {
+                const result = landmarksList[event.target.value];
                 const index = event.target.value;
                 frameSliderValue.innerText = "[" + index + "]" + " : " + landmarksList[index].currentTime + "秒";
                 if (result) {
@@ -192,7 +193,7 @@ videoSelector.addEventListener("change", async (event) => {
                     th4.innerText = "Z座標/ 写真手前方向(cm)";
                     tr.appendChild(th4);
                     landmarkTable.appendChild(tr);
-                    for (let i = 0; i < landmarksList[index].result.worldLandmarks[0].length; i++) {
+                    for (let i = 0; i < result.result.worldLandmarks[0].length; i++) {
                         const tr = document.createElement("tr");
                         const td1 = document.createElement("td");
                         td1.innerText = i + ". " + positionNamesJP[i];
