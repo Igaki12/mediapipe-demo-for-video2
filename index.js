@@ -56,11 +56,6 @@ videoSelector.addEventListener("change", async (event) => {
     video.src = URL.createObjectURL(file);
     console.log("video.videoWidth : ", video.videoWidth);
     console.log("video.videoHeight : ", video.videoHeight);
-    video.load();
-    const videoScreenRatio = parseInt(video.videoWidth / video.videoHeight);
-    console.log("videoScreenRatio : ", videoScreenRatio);
-    video.style.width = "80vw";
-    video.style.height = (80 / videoScreenRatio) + "vw";
     
     video.addEventListener("loadedmetadata", async () => {
         console.log("video.duration : ", video.duration);
@@ -68,10 +63,8 @@ videoSelector.addEventListener("change", async (event) => {
 
 
         const output_canvas = document.getElementById("output_canvas");
-        // output_canvas.style.width = "100vw";
-        // output_canvas.style.height = (80 / videoScreenRatio) + "vw";
-        // output_canvas.width = video.videoWidth;
-        // output_canvas.height = video.videoHeight;
+        output_canvas.width = video.videoWidth;
+        output_canvas.height = video.videoHeight;
         output_canvas.style.top = video.offsetTop + "px";
         output_canvas.style.left = video.offsetLeft + "px";
         output_canvas.style.position = "absolute";
