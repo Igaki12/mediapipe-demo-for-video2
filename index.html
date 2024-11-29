@@ -45,7 +45,31 @@ limitations under the License. -->
     <!-- <input type="slider" -->
     <input type="range" id="frameSlider" min="0" max="0" value="0" step="1" style="width: 100%;">
     <p id="frameSliderValue">0</p>
+    <div id="frameSliderFlex" style="display: flex; justify-content: left; align-items: top; flex-wrap: wrap;">
     <canvas id="frameCanvas" style="display: none;"></canvas>
+    <table id="angleTable">
+      <tr>
+        <th>関節 (参照番号)</th>
+        <th>角度</th>
+      </tr>
+      <tr>
+        <td>右肘(12-14-16)</td>
+        <td id="angle_12_14_16">0</td>
+      </tr>
+      <tr>
+        <td>左肘(11-13-15)</td>
+        <td id="angle_11_13_15">0</td>
+      </tr>
+      <tr>
+        <td>右膝(24-26-28)</td>
+        <td id="angle_24_26_28">0</td>
+      </tr>
+      <tr>
+        <td>左膝(23-25-27)</td>
+        <td id="angle_23_25_27">0</td>
+      </tr>
+    </table>
+    </div>
     <p>スライダーを動かすことで、動画内の特定のフレームでの姿勢予測結果を取得できます。</p>
     <table id="landmarkTable">
       <tr>
