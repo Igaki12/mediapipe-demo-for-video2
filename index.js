@@ -237,6 +237,14 @@ videoSelector.addEventListener("change", async (event) => {
                         tr.appendChild(td4);
                         landmarkTable.appendChild(tr);
                     }
+                    const td_angle_12_14_16 = document.getElementById("angle_12_14_16");
+                    const td_angle_11_13_15 = document.getElementById("angle_11_13_15");
+                    const td_angle_24_26_28 = document.getElementById("angle_24_26_28");
+                    const td_angle_23_25_27 = document.getElementById("angle_23_25_27");
+                    td_angle_11_13_15.innerText = Math.round(180 * Math.acos((result.result.worldLandmarks[0][11].x - result.result.worldLandmarks[0][13].x) / Math.sqrt((result.result.worldLandmarks[0][11].x - result.result.worldLandmarks[0][13].x) ** 2 + (result.result.worldLandmarks[0][11].y - result.result.worldLandmarks[0][13].y) ** 2 + (result.result.worldLandmarks[0][11].z - result.result.worldLandmarks[0][13].z) ** 2) / Math.sqrt((result.result.worldLandmarks[0][13].x - result.result.worldLandmarks[0][15].x) ** 2 + (result.result.worldLandmarks[0][13].y - result.result.worldLandmarks[0][15].y) ** 2 + (result.result.worldLandmarks[0][13].z - result.result.worldLandmarks[0][15].z) ** 2)) / Math.PI);
+                    td_angle_12_14_16.innerText = Math.round(180 * Math.acos((result.result.worldLandmarks[0][12].x - result.result.worldLandmarks[0][14].x) / Math.sqrt((result.result.worldLandmarks[0][12].x - result.result.worldLandmarks[0][14].x) ** 2 + (result.result.worldLandmarks[0][12].y - result.result.worldLandmarks[0][14].y) ** 2 + (result.result.worldLandmarks[0][12].z - result.result.worldLandmarks[0][14].z) ** 2) / Math.sqrt((result.result.worldLandmarks[0][14].x - result.result.worldLandmarks[0][16].x) ** 2 + (result.result.worldLandmarks[0][14].y - result.result.worldLandmarks[0][16].y) ** 2 + (result.result.worldLandmarks[0][14].z - result.result.worldLandmarks[0][16].z) ** 2)) / Math.PI);
+                    td_angle_23_25_27.innerText = Math.round(180 * Math.acos((result.result.worldLandmarks[0][23].x - result.result.worldLandmarks[0][25].x) / Math.sqrt((result.result.worldLandmarks[0][23].x - result.result.worldLandmarks[0][25].x) ** 2 + (result.result.worldLandmarks[0][23].y - result.result.worldLandmarks[0][25].y) ** 2 + (result.result.worldLandmarks[0][23].z - result.result.worldLandmarks[0][25].z) ** 2) / Math.sqrt((result.result.worldLandmarks[0][25].x - result.result.worldLandmarks[0][27].x) ** 2 + (result.result.worldLandmarks[0][25].y - result.result.worldLandmarks[0][27].y) ** 2 + (result.result.worldLandmarks[0][25].z - result.result.worldLandmarks[0][27].z) ** 2)) / Math.PI);
+                    td_angle_24_26_28.innerText = Math.round(180 * Math.acos((result.result.worldLandmarks[0][24].x - result.result.worldLandmarks[0][26].x) / Math.sqrt((result.result.worldLandmarks[0][24].x - result.result.worldLandmarks[0][26].x) ** 2 + (result.result.worldLandmarks[0][24].y - result.result.worldLandmarks[0][26].y) ** 2 + (result.result.worldLandmarks[0][24].z - result.result.worldLandmarks[0][26].z) ** 2) / Math.sqrt((result.result.worldLandmarks[0][26].x - result.result.worldLandmarks[0][28].x) ** 2 + (result.result.worldLandmarks[0][26].y - result.result.worldLandmarks[0][28].y) ** 2 + (result.result.worldLandmarks[0][26].z - result.result.worldLandmarks[0][28].z) ** 2)) / Math.PI);
                     console.log("Finished updating landmarkTable");
                 }
 
@@ -257,29 +265,6 @@ videoSelector.addEventListener("change", async (event) => {
                 //     [ 3,      3.5],
                 //     [ 6.5,    7]
                 //   ]);
-                // var data = google.visualization.arrayToDataTable(([['time(秒)', '鼻の高さ'], ...landmarksList.map((landmark, index) => [landmark.currentTime, landmark.result.landmarks[0][0].y])]));
-
-                // var data = new google.visualization.arrayToDataTable([['time(秒)', '鼻の高さ', '右手首の高さ', '右肩の高さ', '右足首の高さ'], ...landmarksListTrim.map((landmark, index) => [landmark.currentTime, -landmark.result.landmarks[0][0].y, -landmark.result.landmarks[0][15].y, -landmark.result.landmarks[0][13].y, -landmark.result.landmarks[0][29].y])]);
-
-                // var options = {
-                //     title: '鼻・右手首・右肩・右足首の高さの推移(landmark:写真の中の位置を基準にした座標)',
-                //     hAxis: { title: 'time(秒)', minValue: 0, maxValue: video.duration },
-                //     vAxis: { title: '高さ(画面内での割合)', minValue: -1, maxValue: 0 },
-                //     lineWidth: 1,
-                //     pointSize: 2,
-                //     pointShape: 'circle',
-                //     legend: { position: 'top' },
-                //     series: [
-                //         { color: '#FF0000', labelInLegend: '鼻の高さ' },
-                //         { color: '#00FF00', labelInLegend: '右手首の高さ' },
-                //         { color: '#0000FF', labelInLegend: '右肩の高さ' },
-                //         { color: '#FFFF00', labelInLegend: '右足首の高さ' }
-                //     ]
-                // };
-
-                // var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
-
-                // chart.draw(data, options);
                 const landmarksListTrim2 = landmarksList.filter((landmark) => landmark.result.worldLandmarks[0] && landmark.result.worldLandmarks[0].length > 32);
                 console.log("Start drawing Chart 2");
                 var data2 = new google.visualization.arrayToDataTable([['time(秒)', '鼻の高さ', '右手首の高さ', '右肩の高さ', '右足首の高さ'], ...landmarksListTrim2.map((landmark, index) => [landmark.currentTime, -100 * landmark.result.worldLandmarks[0][0].y, -100 * landmark.result.worldLandmarks[0][15].y, -100 * landmark.result.worldLandmarks[0][13].y, -100 * landmark.result.worldLandmarks[0][29].y])]);
