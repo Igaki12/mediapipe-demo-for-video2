@@ -250,6 +250,30 @@ videoSelector.addEventListener("change", async (event) => {
                     const length11_15 = Math.sqrt(vector11_15.x ** 2 + vector11_15.y ** 2 + vector11_15.z ** 2);
                     // cos(13→11,13→15) = (13→11・13→15) / (|13→11|・|13→15|)
                     td_angle_11_13_15.innerText = Math.round(180 * Math.acos((vector11_13.x * vector15_13.x + vector11_13.y * vector15_13.y + vector11_13.z * vector15_13.z) / (length11_13 * length15_13)) / Math.PI * 10) / 10;
+                    const vector12_14 = { x: result.result.worldLandmarks[0][12].x - result.result.worldLandmarks[0][14].x, y: result.result.worldLandmarks[0][12].y - result.result.worldLandmarks[0][14].y, z: result.result.worldLandmarks[0][12].z - result.result.worldLandmarks[0][14].z };
+                    const vector16_14 = { x: result.result.worldLandmarks[0][16].x - result.result.worldLandmarks[0][14].x, y: result.result.worldLandmarks[0][16].y - result.result.worldLandmarks[0][14].y, z: result.result.worldLandmarks[0][16].z - result.result.worldLandmarks[0][14].z };
+                    const vector12_16 = { x: result.result.worldLandmarks[0][12].x - result.result.worldLandmarks[0][16].x, y: result.result.worldLandmarks[0][12].y - result.result.worldLandmarks[0][16].y, z: result.result.worldLandmarks[0][12].z - result.result.worldLandmarks[0][16].z };
+                    const length12_14 = Math.sqrt(vector12_14.x ** 2 + vector12_14.y ** 2 + vector12_14.z ** 2);
+                    const length16_14 = Math.sqrt(vector16_14.x ** 2 + vector16_14.y ** 2 + vector16_14.z ** 2);
+                    const length12_16 = Math.sqrt(vector12_16.x ** 2 + vector12_16.y ** 2 + vector12_16.z ** 2);
+                    // cos(14→12,14→16) = (14→12・14→16) / (|14→12|・|14→16|)
+                    td_angle_12_14_16.innerText = Math.round(180 * Math.acos((vector12_14.x * vector16_14.x + vector12_14.y * vector16_14.y + vector12_14.z * vector16_14.z) / (length12_14 * length16_14)) / Math.PI * 10) / 10;
+                    const vector23_25 = { x: result.result.worldLandmarks[0][23].x - result.result.worldLandmarks[0][25].x, y: result.result.worldLandmarks[0][23].y - result.result.worldLandmarks[0][25].y, z: result.result.worldLandmarks[0][23].z - result.result.worldLandmarks[0][25].z };
+                    const vector27_25 = { x: result.result.worldLandmarks[0][27].x - result.result.worldLandmarks[0][25].x, y: result.result.worldLandmarks[0][27].y - result.result.worldLandmarks[0][25].y, z: result.result.worldLandmarks[0][27].z - result.result.worldLandmarks[0][25].z };
+                    const vector23_27 = { x: result.result.worldLandmarks[0][23].x - result.result.worldLandmarks[0][27].x, y: result.result.worldLandmarks[0][23].y - result.result.worldLandmarks[0][27].y, z: result.result.worldLandmarks[0][23].z - result.result.worldLandmarks[0][27].z };
+                    const length23_25 = Math.sqrt(vector23_25.x ** 2 + vector23_25.y ** 2 + vector23_25.z ** 2);
+                    const length27_25 = Math.sqrt(vector27_25.x ** 2 + vector27_25.y ** 2 + vector27_25.z ** 2);
+                    const length23_27 = Math.sqrt(vector23_27.x ** 2 + vector23_27.y ** 2 + vector23_27.z ** 2);
+                    // cos(25→23,25→27) = (25→23・25→27) / (|25→23|・|25→27|)
+                    td_angle_23_25_27.innerText = Math.round(180 * Math.acos((vector23_25.x * vector27_25.x + vector23_25.y * vector27_25.y + vector23_25.z * vector27_25.z) / (length23_25 * length27_25)) / Math.PI * 10) / 10;
+                    const vector24_26 = { x: result.result.worldLandmarks[0][24].x - result.result.worldLandmarks[0][26].x, y: result.result.worldLandmarks[0][24].y - result.result.worldLandmarks[0][26].y, z: result.result.worldLandmarks[0][24].z - result.result.worldLandmarks[0][26].z };
+                    const vector28_26 = { x: result.result.worldLandmarks[0][28].x - result.result.worldLandmarks[0][26].x, y: result.result.worldLandmarks[0][28].y - result.result.worldLandmarks[0][26].y, z: result.result.worldLandmarks[0][28].z - result.result.worldLandmarks[0][26].z };
+                    const vector24_28 = { x: result.result.worldLandmarks[0][24].x - result.result.worldLandmarks[0][28].x, y: result.result.worldLandmarks[0][24].y - result.result.worldLandmarks[0][28].y, z: result.result.worldLandmarks[0][24].z - result.result.worldLandmarks[0][28].z };
+                    const length24_26 = Math.sqrt(vector24_26.x ** 2 + vector24_26.y ** 2 + vector24_26.z ** 2);
+                    const length28_26 = Math.sqrt(vector28_26.x ** 2 + vector28_26.y ** 2 + vector28_26.z ** 2);
+                    const length24_28 = Math.sqrt(vector24_28.x ** 2 + vector24_28.y ** 2 + vector24_28.z ** 2);
+                    // cos(26→24,26→28) = (26→24・26→28) / (|26→24|・|26→28|)
+                    td_angle_24_26_28.innerText = Math.round(180 * Math.acos((vector24_26.x * vector28_26.x + vector24_26.y * vector28_26.y + vector24_26.z * vector28_26.z) / (length24_26 * length28_26)) / Math.PI * 10) / 10;
                     console.log("Finished updating landmarkTable");
                 }
 
