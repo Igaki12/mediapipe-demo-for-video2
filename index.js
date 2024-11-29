@@ -69,7 +69,7 @@ videoSelector.addEventListener("change", async (event) => {
 
         const output_canvas = document.getElementById("output_canvas");
         // output_canvas.style.width = "100vw";
-        output_canvas.style.height = (80 / videoScreenRatio) + "vw";
+        // output_canvas.style.height = (80 / videoScreenRatio) + "vw";
         // output_canvas.width = video.videoWidth;
         // output_canvas.height = video.videoHeight;
         output_canvas.style.top = video.offsetTop + "px";
