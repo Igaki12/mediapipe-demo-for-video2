@@ -323,7 +323,7 @@ videoSelector.addEventListener("change", async (event) => {
                 var options4 = {
                     title: '肘・肩・膝のなす角度の推移',
                     hAxis: { title: 'time(秒)', minValue: 0, maxValue: video.duration },
-                    vAxis: { title: '角度(°)' },
+                    vAxis: { title: '角度(°)' ,minValue: 0, maxValue: 180},
                     lineWidth: 1,
                     pointSize: 2,
                     pointShape: 'circle',
