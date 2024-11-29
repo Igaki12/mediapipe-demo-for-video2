@@ -137,7 +137,7 @@ videoSelector.addEventListener("change", async (event) => {
             const landmarkTable = document.getElementById("landmarkTable");
             console.log("landmarksList : ", landmarksList);
 
-            frameSlider.addEventListener("change", (event) => {
+            frameSlider.addEventListener("input", (event) => {
                 const result = landmarksListTrim[event.target.value];
                 const index = parseInt(event.target.value);
 
