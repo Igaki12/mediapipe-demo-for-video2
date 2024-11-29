@@ -341,7 +341,7 @@ videoSelector.addEventListener("change", async (event) => {
                         return;
                     }
                     const vector11_13 = { x: landmark.result.worldLandmarks[0][11].x - landmark.result.worldLandmarks[0][13].x, y: landmark.result.worldLandmarks[0][11].y - landmark.result.worldLandmarks[0][13].y, z: landmark.result.worldLandmarks[0][11].z - landmark.result.worldLandmarks[0][13].z };
-                    const vector15_13 = { x: landmark.result.worldLandmarks[0][15].x - landmark.result.worldLandmarks[0][13].x, y: landmark.result.result.worldLandmarks[0][15].y - landmark.result.worldLandmarks[0][13].y, z: landmark.result.worldLandmarks[0][15].z - landmark.result.worldLandmarks[0][13].z };
+                    const vector15_13 = { x: landmark.result.worldLandmarks[0][15].x - landmark.result.worldLandmarks[0][13].x, y: landmark.result.worldLandmarks[0][15].y - landmark.result.worldLandmarks[0][13].y, z: landmark.result.worldLandmarks[0][15].z - landmark.result.worldLandmarks[0][13].z };
                     const vector11_15 = { x: landmark.result.worldLandmarks[0][11].x - landmark.result.worldLandmarks[0][15].x, y: landmark.result.worldLandmarks[0][11].y - landmark.result.worldLandmarks[0][15].y, z: landmark.result.worldLandmarks[0][11].z - landmark.result.worldLandmarks[0][15].z };
                     const length11_13 = Math.sqrt(vector11_13.x ** 2 + vector11_13.y ** 2 + vector11_13.z ** 2);
                     const length15_13 = Math.sqrt(vector15_13.x ** 2 + vector15_13.y ** 2 + vector15_13.z ** 2);
