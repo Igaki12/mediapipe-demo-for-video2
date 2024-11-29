@@ -54,17 +54,24 @@ videoSelector.addEventListener("change", async (event) => {
     const file = event.target.files[0];
 
     video.src = URL.createObjectURL(file);
+    console.log("video.videoWidth : ", video.videoWidth);
+    console.log("video.videoHeight : ", video.videoHeight);
+    video.load();
+    const videoScreenRatio = video.videoWidth / video.videoHeight;
+    console.log("videoScreenRatio : ", videoScreenRatio);
+    video.style.width = "1vw";
+    video.style.height = (1 / videoScreenRatio) + "vw";
+    
     video.addEventListener("loadedmetadata", async () => {
         console.log("video.duration : ", video.duration);
         console.log("video.currentTime : ", video.currentTime);
-        console.log("video.videoWidth : ", video.videoWidth);
-        console.log("video.videoHeight : ", video.videoHeight);
+
 
         const output_canvas = document.getElementById("output_canvas");
-        // output_canvas.style.width = video.videoWidth + "px";
-        // output_canvas.style.height = video.videoHeight + "px";
-        output_canvas.width = video.videoWidth;
-        output_canvas.height = video.videoHeight;
+        output_canvas.style.width = video.videoWidth + "px";
+        output_canvas.style.height = video.videoHeight + "px";
+        // output_canvas.width = video.videoWidth;
+        // output_canvas.height = video.videoHeight;
         output_canvas.style.top = video.offsetTop + "px";
         output_canvas.style.left = video.offsetLeft + "px";
         output_canvas.style.position = "absolute";
