@@ -59,8 +59,8 @@ videoSelector.addEventListener("change", async (event) => {
     video.load();
     const videoScreenRatio = video.videoWidth / video.videoHeight;
     console.log("videoScreenRatio : ", videoScreenRatio);
-    video.style.width = "1vw";
-    video.style.height = (1 / videoScreenRatio) + "vw";
+    video.style.width = "100vw";
+    video.style.height = (100 / videoScreenRatio) + "vw";
     
     video.addEventListener("loadedmetadata", async () => {
         console.log("video.duration : ", video.duration);
