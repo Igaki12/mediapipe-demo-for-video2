@@ -337,7 +337,7 @@ videoSelector.addEventListener("change", async (event) => {
                 chart3.draw(data3, options3);
                 console.log("start drawing Chart 4");
                 const angleList = landmarksListTrim.map(async (landmark, index) => {
-                    if(landmark.result.worldLandmarks[0].length < 32){
+                    if(landmark.result.worldLandmarks[0].length < 33){
                         return;
                     }
                     const vector11_13 = { x: landmark.result.worldLandmarks[0][11].x - landmark.result.worldLandmarks[0][13].x, y: landmark.result.worldLandmarks[0][11].y - landmark.result.worldLandmarks[0][13].y, z: landmark.result.worldLandmarks[0][11].z - landmark.result.worldLandmarks[0][13].z };
@@ -372,7 +372,8 @@ videoSelector.addEventListener("change", async (event) => {
                     const length24_28 = Math.sqrt(vector24_28.x ** 2 + vector24_28.y ** 2 + vector24_28.z ** 2);
                     // cos(26→24,26→28) = (26→24・26→28) / (|26→24|・|26→28|)
                     const angle_24_26_28 = Math.round(180 * Math.acos((vector24_26.x * vector28_26.x + vector24_26.y * vector28_26.y + vector24_26.z * vector28_26.z) / (length24_26 * length28_26)) / Math.PI * 10) / 10;
-                    return { currentTime: landmark.currentTime, angle_11_13_15: angle_11_13_15, angle_12_14_16: angle_12_14_16, angle_23_25_27: angle_23_25_27, angle_24_26_28: angle_24_26_28 };
+                    // return { currentTime: landmark.currentTime, angle_11_13_15: angle_11_13_15, angle_12_14_16: angle_12_14_16, angle_23_25_27: angle_23_25_27, angle_24_26_28: angle_24_26_28 };
+                    return [landmark.currentTime, angle_11_13_15, angle_12_14_16, angle_23_25_27, angle_24_26_28];
                 });
                 var data4 = new google.visualization.arrayToDataTable([['time(秒)', '左肘のなす角度', '14→12,14→16のなす角度', '25→23,25→27のなす角度', '26→24,26→28のなす角度'], ...angleList]);
                 var options4 = {
