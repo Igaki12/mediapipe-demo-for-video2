@@ -336,7 +336,10 @@ videoSelector.addEventListener("change", async (event) => {
                 var chart3 = new google.visualization.ScatterChart(document.getElementById('chart_div3'));
                 chart3.draw(data3, options3);
                 console.log("start drawing Chart 4");
-                const angleList = landmarksListTrim2.map(async (landmark, index) => {
+                const angleList = landmarksListTrim.map(async (landmark, index) => {
+                    if(landmark.result.worldLandmarks[0].length < 32){
+                        return;
+                    }
                     const vector11_13 = { x: landmark.result.worldLandmarks[0][11].x - landmark.result.worldLandmarks[0][13].x, y: landmark.result.worldLandmarks[0][11].y - landmark.result.worldLandmarks[0][13].y, z: landmark.result.worldLandmarks[0][11].z - landmark.result.worldLandmarks[0][13].z };
                     const vector15_13 = { x: landmark.result.worldLandmarks[0][15].x - landmark.result.worldLandmarks[0][13].x, y: landmark.result.result.worldLandmarks[0][15].y - landmark.result.worldLandmarks[0][13].y, z: landmark.result.worldLandmarks[0][15].z - landmark.result.worldLandmarks[0][13].z };
                     const vector11_15 = { x: landmark.result.worldLandmarks[0][11].x - landmark.result.worldLandmarks[0][15].x, y: landmark.result.worldLandmarks[0][11].y - landmark.result.worldLandmarks[0][15].y, z: landmark.result.worldLandmarks[0][11].z - landmark.result.worldLandmarks[0][15].z };
@@ -382,9 +385,9 @@ videoSelector.addEventListener("change", async (event) => {
                     legend: { position: 'top' },
                     series: [
                         { color: '#FF0000', labelInLegend: '左肘のなす角度' },
-                        { color: '#00FF00', labelInLegend: '14→12,14→16のなす角度' },
-                        { color: '#0000FF', labelInLegend: '25→23,25→27のなす角度' },
-                        { color: '#FFFF00', labelInLegend: '26→24,26→28のなす角度' }
+                        { color: '#00FF00', labelInLegend: '右肘のなす角度' },
+                        { color: '#0000FF', labelInLegend: '左膝のなす角度' },
+                        { color: '#FFFF00', labelInLegend: '右膝のなす角度' }
                     ]
                 };
                 var chart4 = new google.visualization.ScatterChart(document.getElementById('chart_div4'));
