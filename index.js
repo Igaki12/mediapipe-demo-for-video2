@@ -375,8 +375,8 @@ videoSelector.addEventListener("change", async (event) => {
                     // return { currentTime: landmark.currentTime, angle_11_13_15: angle_11_13_15, angle_12_14_16: angle_12_14_16, angle_23_25_27: angle_23_25_27, angle_24_26_28: angle_24_26_28 };
                     return [landmark.currentTime, angle_11_13_15, angle_12_14_16, angle_23_25_27, angle_24_26_28];
                 });
-                var data4 = new google.visualization.arrayToDataTable([['time(秒)', '左肘のなす角度', '右肘のなす角度', '左膝のなす角度', '右膝のなす角度'], ...angleList]);
                 console.log("angleList : ", angleList);
+                var data4 = new google.visualization.arrayToDataTable([['time(秒)', '左肘のなす角度', '右肘のなす角度', '左膝のなす角度', '右膝のなす角度'], ...angleList]);
                 var options4 = {
                     title: '肘・肩・膝のなす角度の推移',
                     hAxis: { title: 'time(秒)', minValue: 0, maxValue: video.duration },
