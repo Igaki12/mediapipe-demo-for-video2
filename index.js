@@ -301,6 +301,27 @@ videoSelector.addEventListener("change", async (event) => {
                 var chart2 = new google.visualization.ScatterChart(document.getElementById('chart_div2'));
                 chart2.draw(data2, options2);
                 console.log("Finished drawing Chart 2");
+
+                console.log("Start drawing Chart 3");
+                var data3 = new google.visualization.arrayToDataTable([['time(秒)', '鼻の高さ', '左手首の高さ', '左肩の高さ', '左足首の高さ'], ...landmarksListTrim2.map((landmark, index) => [landmark.currentTime, -100 * landmark.result.worldLandmarks[0][0].y, -100 * landmark.result.worldLandmarks[0][16].y, -100 * landmark.result.worldLandmarks[0][14].y, -100 * landmark.result.worldLandmarks[0][30].y])]);
+                var options3 = {
+                    title: '鼻・左手首・左肩・左足首の高さの推移(実世界の推定高度)',
+                    hAxis: { title: 'time(秒)', minValue: 0, maxValue: video.duration },
+                    vAxis: { title: '高さ(cm)' },
+                    lineWidth: 1,
+                    pointSize: 2,
+                    pointShape: 'circle',
+                    legend: { position: 'top' },
+                    series: [
+                        { color: '#FF0000', labelInLegend: '鼻の高さ' },
+                        { color: '#00FF00', labelInLegend: '左手首の高さ' },
+                        { color: '#0000FF', labelInLegend: '左肩の高さ' },
+                        { color: '#FFFF00', labelInLegend: '左足首の高さ' }
+                    ]
+                };
+                var chart3 = new google.visualization.ScatterChart(document.getElementById('chart_div3'));
+                chart3.draw(data3, options3);
+                console.log("Finished drawing Chart 3");
             }
         }, video.duration * 1000 + 5000);
 
