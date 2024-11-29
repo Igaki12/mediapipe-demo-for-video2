@@ -242,8 +242,15 @@ videoSelector.addEventListener("change", async (event) => {
                     const td_angle_24_26_28 = document.getElementById("angle_24_26_28");
                     const td_angle_23_25_27 = document.getElementById("angle_23_25_27");
                     // 13→11と13→15のなす角度
+                    // 180度を超えると、acosの値がNaNになるので、acosの引数が1以上の場合は180度とする
+                    if (result.result.worldLandmarks[0][13].x - result.result.worldLandmarks[0][11].x >= 0 && result.result.worldLandmarks[0][13].x - result.result.worldLandmarks[0][15].x >= 0) {
+                        td_angle_11_13_15.innerHTML = Math.round(180 * Math.acos((result.result.worldLandmarks[0][13].x - result.result.worldLandmarks[0][11].x) / Math.sqrt((result.result.worldLandmarks[0][13].x - result.result.worldLandmarks[0][11].x) ** 2 + (result.result.worldLandmarks[0][13].y - result.result.worldLandmarks[0][11].y) ** 2 + (result.result.worldLandmarks[0][13].z - result.result.worldLandmarks[0][11].z) ** 2) / Math.sqrt((result.result.worldLandmarks[0][13].x - result.result.worldLandmarks[0][15].x) ** 2 + (result.result.worldLandmarks[0][13].y - result.result.worldLandmarks[0][15].y) ** 2 + (result.result.worldLandmarks[0][13].z - result.result.worldLandmarks[0][15].z) ** 2)) / Math.PI) + "度";
+                        console.log("angle_11_13_15 : " + td_angle_11_13_15.innerHTML);
+                    }
+                    else {
                     td_angle_11_13_15.innerHTML = Math.round(180 * Math.acos((result.result.worldLandmarks[0][13].x - result.result.worldLandmarks[0][11].x) / Math.sqrt((result.result.worldLandmarks[0][13].x - result.result.worldLandmarks[0][11].x) ** 2 + (result.result.worldLandmarks[0][13].y - result.result.worldLandmarks[0][11].y) ** 2 + (result.result.worldLandmarks[0][13].z - result.result.worldLandmarks[0][11].z) ** 2) / Math.sqrt((result.result.worldLandmarks[0][13].x - result.result.worldLandmarks[0][15].x) ** 2 + (result.result.worldLandmarks[0][13].y - result.result.worldLandmarks[0][15].y) ** 2 + (result.result.worldLandmarks[0][13].z - result.result.worldLandmarks[0][15].z) ** 2)) / Math.PI) + "度";
                     console.log("angle_11_13_15 : " + td_angle_11_13_15.innerHTML);
+                    }
                     console.log("Finished updating landmarkTable");
                 }
 
