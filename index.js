@@ -337,7 +337,7 @@ videoSelector.addEventListener("change", async (event) => {
                 chart3.draw(data3, options3);
                 console.log("start drawing Chart 4");
                 const angleList = landmarksListTrim.map(async (landmark, index) => {
-                    if(landmark.result.worldLandmarks[0].length < 33){
+                    if(!landmark.result.worldLandmarks || !landmark.result.worldLandmarks[0] || landmark.result.worldLandmarks[0].length < 33){
                         return;
                     }
                     const vector11_13 = { x: landmark.result.worldLandmarks[0][11].x - landmark.result.worldLandmarks[0][13].x, y: landmark.result.worldLandmarks[0][11].y - landmark.result.worldLandmarks[0][13].y, z: landmark.result.worldLandmarks[0][11].z - landmark.result.worldLandmarks[0][13].z };
@@ -376,6 +376,7 @@ videoSelector.addEventListener("change", async (event) => {
                     return [landmark.currentTime, angle_11_13_15, angle_12_14_16, angle_23_25_27, angle_24_26_28];
                 });
                 var data4 = new google.visualization.arrayToDataTable([['time(秒)', '左肘のなす角度', '右肘のなす角度', '左膝のなす角度', '右膝のなす角度'], ...angleList]);
+                console.log("angleList : ", angleList);
                 var options4 = {
                     title: '肘・肩・膝のなす角度の推移',
                     hAxis: { title: 'time(秒)', minValue: 0, maxValue: video.duration },
