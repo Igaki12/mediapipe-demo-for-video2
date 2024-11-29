@@ -337,7 +337,7 @@ videoSelector.addEventListener("change", async (event) => {
                 chart3.draw(data3, options3);
                 console.log("start drawing Chart 4");
                 const angleList = landmarksListTrim.map(async (landmark, index) => {
-                    if(!landmark.result.worldLandmarks || !landmark.result.worldLandmarks[0] || landmark.result.worldLandmarks[0].length < 33){
+                    if(!landmark.result || !landmark.result.worldLandmarks || !landmark.result.worldLandmarks[0] || landmark.result.worldLandmarks[0].length < 33){
                         return;
                     }
                     const vector11_13 = { x: landmark.result.worldLandmarks[0][11].x - landmark.result.worldLandmarks[0][13].x, y: landmark.result.worldLandmarks[0][11].y - landmark.result.worldLandmarks[0][13].y, z: landmark.result.worldLandmarks[0][11].z - landmark.result.worldLandmarks[0][13].z };
